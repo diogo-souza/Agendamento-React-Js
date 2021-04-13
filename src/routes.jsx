@@ -7,8 +7,6 @@ import Consulta from './Pages/Consulta';
 import Enfermeiros from './Pages/Enfermeiros';
 import Home from './Pages';
 
-// Rotas
-
 const routes = [{
   path: '/agendamento',
   name: 'Agendamento',
