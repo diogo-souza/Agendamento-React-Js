@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container, Form, Card, Button,
 } from 'react-bootstrap';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from '../../utils/api';
 
 export default function index() {
   const [form, setForm] = useState({
@@ -12,9 +13,18 @@ export default function index() {
     select: '',
   });
 
-  const [dataVacina, setDateVacina] = useState(new Date());
+  const fetchDados = async () => {
+    const response = await axios.get('/agenda');
+    setForm(response.data);
+  };
 
-  const [dataNascimento, setDateNascimento] = useState(new Date());
+  useEffect(() => {
+    fetchDados();
+  }, []);
+
+  const [dataDeVacina, setDateDeVacina] = useState(new Date());
+
+  const [dataDeNascimento, setDateDeNascimento] = useState(new Date());
 
   const onChange = (event) => {
     const { name, value } = event.target;
@@ -25,10 +35,24 @@ export default function index() {
     });
   };
 
+  const addAgendamento = async (event) => {
+    event.preventDefault();
+
+    const data = {
+      completed: false,
+      nome: form.nome,
+      select: form.select,
+      dataVacina: dataDeVacina,
+      dataNascimento: dataDeNascimento,
+    };
+
+    await axios.post('/agenda', data);
+  };
+
   return (
     <Container>
       <Card>
-        <Form>
+        <Form onSubmit={addAgendamento}>
           <Form.Group>
             <Form.Label>Nome</Form.Label>
             <Form.Control
@@ -56,19 +80,21 @@ export default function index() {
             <Form.Group>
               <Form.Label>Data Nascimento</Form.Label>
               <DatePicker
-                selected={dataNascimento}
-                onChange={(date) => setDateNascimento(date)}
+                selected={dataDeNascimento}
+                onChange={(date) => setDateDeNascimento(date)}
               />
             </Form.Group>
             <Form.Group>
               <Form.Label>Data Vacinação</Form.Label>
               <DatePicker
-                selected={dataVacina}
-                onChange={(date) => setDateVacina(date)}
+                selected={dataDeVacina}
+                onChange={(date) => setDateDeVacina(date)}
               />
             </Form.Group>
           </Form.Group>
-          <Button>
+          <Button
+            type="submit"
+          >
             Agendar
           </Button>
         </Form>

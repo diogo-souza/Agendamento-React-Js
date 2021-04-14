@@ -10,11 +10,11 @@ export default function index() {
       value: 'Nome',
     },
     {
-      id: 'data',
+      id: 'dataNascimento',
       value: 'Data',
     },
     {
-      id: 'hora',
+      id: 'dataVacina',
       value: 'Horário',
     },
   ];
@@ -22,6 +22,7 @@ export default function index() {
   return (
     <Listar
       columns={columns}
+      endpoint="/agenda"
     />
   );
 }
