@@ -11,11 +11,11 @@ export default function index() {
       value: 'Nome',
     },
     {
-      id: 'data',
+      id: 'dataNascimento',
       value: 'Data',
     },
     {
-      id: 'hora',
+      id: 'dataVacina',
       value: 'Horário',
     },
   ];
@@ -39,6 +39,7 @@ export default function index() {
         </Form.Group>
         <Listar
           columns={columns}
+          endpoint="/agenda"
         />
       </Form>
     </Container>
