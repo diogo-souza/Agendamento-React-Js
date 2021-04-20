@@ -4,6 +4,8 @@ import {
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+// componentização do header junto ao nav a ser apresentada nas páginas
+
 const Header = ({ routes = [] }) => (
   <Navbar bg="dark" variant="dark">
     <Link className="navbar-brand" to="/">Vacinação</Link>

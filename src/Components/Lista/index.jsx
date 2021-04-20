@@ -4,6 +4,8 @@ import { Container, Card } from 'react-bootstrap';
 import axios from '../../utils/api';
 import Table from '../Table';
 
+/* componentização da lista nas páginas recuperando alguns valores de linhas e colunas */
+
 export default function index({
   columns, endpoint,
 }) {

@@ -2,6 +2,8 @@ import React from 'react';
 import './card.css';
 import { Link } from 'react-router-dom';
 
+// cardUI é exatamente o que aparece na HomePage - a parte gráfica
+
 const CardUI = ({
   imageSource, title, url, descricao,
 }) => (
