@@ -2,6 +2,8 @@ import React from 'react';
 import { GoMarkGithub } from 'react-icons/go';
 import '../../Styles/index.css';
 
+// componentização do footer a ser apresentada em todas as páginas
+
 const Footer = () => (
   <footer className="footer text-center header-footer-theme">
     <div className="text-muted container">

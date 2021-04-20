@@ -4,6 +4,8 @@ import CardUI from './cardUI';
 import image1 from '../../Assets/atv1.jpg';
 import image2 from '../../Assets/atv2.png';
 
+// cardCentral é onde ficam as imagens, informações e navegação da HomePage
+
 const cardsAtividades = [
   {
     id: 1,

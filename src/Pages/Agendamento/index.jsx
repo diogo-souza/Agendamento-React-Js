@@ -5,28 +5,38 @@ import {
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { toast } from 'react-toastify';
 import axios from '../../utils/api';
 
 export default function index() {
+  // declarando estado principal para ser submetido ao cadastro
   const [form, setForm] = useState({
     nome: '',
     select: '',
     atendimento: '',
   });
 
+  // fazendo a requisição dos dados na API
   const fetchDados = async () => {
-    const response = await axios.get('/agenda');
-    setForm(response.data);
+    try {
+      const response = await axios.get('/agenda');
+      setForm(response.data);
+      toast.info('Requisição feita com sucesso');
+    } catch (e) {
+      toast.error(e.message);
+    }
   };
 
   useEffect(() => {
     fetchDados();
   }, []);
 
+  // declarando data de vacina e de nascimento para cadastramento
   const [dataDeVacina, setDateDeVacina] = useState(new Date());
 
   const [dataDeNascimento, setDateDeNascimento] = useState(new Date());
 
+  // Verificando a mudança dos dados no formulário controlado
   const onChange = (event) => {
     const { name, value } = event.target;
 
@@ -36,6 +46,7 @@ export default function index() {
     });
   };
 
+  // função para adicionar agendamento na API
   const addAgendamento = async (event) => {
     event.preventDefault();
 
@@ -48,9 +59,15 @@ export default function index() {
       atendimento: 'Não Realizado',
     };
 
-    await axios.post('/agenda', data);
+    try {
+      await axios.post('/agenda', data);
+      toast.info('Agendamento feito com sucesso');
+    } catch (e) {
+      toast.error(e.message);
+    }
   };
 
+  // Corpo da aplicação com formulário
   return (
     <Container>
       <Card className="m-4">

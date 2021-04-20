@@ -7,6 +7,8 @@ import Enfermeiros from './Pages/Enfermeiros';
 import Home from './Pages';
 import Footer from './Components/Footer';
 
+// criação das rotas que aparecem no Header para navegação
+
 const routes = [{
   path: '/agendamento',
   name: 'Agendamento',
@@ -26,6 +28,8 @@ const routes = [{
   visible: false,
 },
 ];
+
+// corpo da aplicação
 
 const Routes = () => (
   <div>

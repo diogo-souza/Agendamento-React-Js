@@ -6,24 +6,38 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Container, Form, Table, Card, Button,
 } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 import axios from '../../utils/api';
 
 export default function Listaindex() {
+  // chamando estado para setar as linhas da tabela
   const [rows, setRows] = useState([]);
 
+  // fazendo requisição dos dados da tabela para listar
   const fetchRows = async () => {
-    const response = await axios.get('/agenda');
-    setRows(response.data);
+    try {
+      const response = await axios.get('/agenda');
+      setRows(response.data);
+      toast.info('Requisição feita com sucesso');
+    } catch (e) {
+      toast.error(e.message);
+    }
   };
 
   useEffect(() => {
     fetchRows();
   }, []);
 
+  // tentativa de atualizar o ID da realização da Vacina
   const onSubmit = async () => {
-    await axios.get('/agenda');
+    try {
+      await axios.put(`/agenda/${rows.id}`);
+    } catch (e) {
+      toast.error(e.message);
+    }
   };
 
+  // renderizando colunas da tabela de acordo com valores base
   const columns = [
     {
       id: 'nome',
@@ -57,6 +71,7 @@ export default function Listaindex() {
     },
   ];
 
+  // corpo da aplicação
   return (
     <Container>
       <Card className="m-2">
