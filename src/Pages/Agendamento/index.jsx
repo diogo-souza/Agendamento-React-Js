@@ -11,6 +11,7 @@ export default function index() {
   const [form, setForm] = useState({
     nome: '',
     select: '',
+    atendimento: '',
   });
 
   const fetchDados = async () => {
@@ -44,6 +45,7 @@ export default function index() {
       select: form.select,
       dataVacina: dataDeVacina,
       dataNascimento: dataDeNascimento,
+      atendimento: 'Não Realizado',
     };
 
     await axios.post('/agenda', data);
@@ -51,9 +53,9 @@ export default function index() {
 
   return (
     <Container>
-      <Card>
+      <Card className="m-4">
         <Form onSubmit={addAgendamento}>
-          <Form.Group>
+          <Form.Group className="m-2">
             <Form.Label>Nome</Form.Label>
             <Form.Control
               name="nome"
@@ -63,7 +65,7 @@ export default function index() {
               placeholder="Digite seu nome"
             />
           </Form.Group>
-          <Form.Group>
+          <Form.Group className="m-2">
             <Form.Label>Categoria</Form.Label>
             <Form.Control
               name="select"
@@ -77,23 +79,30 @@ export default function index() {
               <option value="jovem">Jovem</option>
               <option value="criança">Criança</option>
             </Form.Control>
-            <Form.Group>
+            <Form.Group className="m-2">
               <Form.Label>Data Nascimento</Form.Label>
               <DatePicker
+                className="m-2"
                 selected={dataDeNascimento}
                 onChange={(date) => setDateDeNascimento(date)}
+                showTimeSelect
+                dateFormat="MMMM d, yyyy h:mm aa"
               />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="m-2">
               <Form.Label>Data Vacinação</Form.Label>
               <DatePicker
+                className="m-2"
                 selected={dataDeVacina}
                 onChange={(date) => setDateDeVacina(date)}
+                showTimeSelect
+                dateFormat="MMMM d, yyyy h:mm aa"
               />
             </Form.Group>
           </Form.Group>
           <Button
             type="submit"
+            className="m-4"
           >
             Agendar
           </Button>
