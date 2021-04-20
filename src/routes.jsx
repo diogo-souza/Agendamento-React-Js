@@ -3,20 +3,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import Header from './Components/Header';
 import Agendamento from './Pages/Agendamento';
-import Consulta from './Pages/Consulta';
 import Enfermeiros from './Pages/Enfermeiros';
 import Home from './Pages';
+import Footer from './Components/Footer';
 
 const routes = [{
   path: '/agendamento',
   name: 'Agendamento',
   component: Agendamento,
-  visible: true,
-},
-{
-  path: '/consulta',
-  name: 'Consulta',
-  component: Consulta,
   visible: true,
 },
 {
@@ -34,19 +28,22 @@ const routes = [{
 ];
 
 const Routes = () => (
-  <BrowserRouter>
-    <Header routes={routes} />
-    <Switch>
-      {routes.map(({ component, path }) => (
-        <Route
-          key={path}
-          path={path}
-          component={component}
-          exact
-        />
-      ))}
-    </Switch>
-  </BrowserRouter>
+  <div>
+    <BrowserRouter>
+      <Header routes={routes} />
+      <Switch>
+        {routes.map(({ component, path }) => (
+          <Route
+            key={path}
+            path={path}
+            component={component}
+            exact
+          />
+        ))}
+      </Switch>
+    </BrowserRouter>
+    <Footer />
+  </div>
 );
 
 export default Routes;

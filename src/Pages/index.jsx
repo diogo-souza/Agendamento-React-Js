@@ -1,12 +1,15 @@
 import React from 'react';
-import {
-  Container,
-} from 'react-bootstrap';
+
+import { Card, Container } from 'react-bootstrap';
+import CardPrincipal from '../Components/Cards/cardCentral';
 
 export default function LoginHome() {
   return (
-    <Container className="m-2">
-      Olar
+    <Container>
+      <Card className="m-2">
+        <CardPrincipal />
+      </Card>
     </Container>
+
   );
 }
