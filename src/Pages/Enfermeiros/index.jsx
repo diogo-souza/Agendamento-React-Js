@@ -17,6 +17,16 @@ export default function index() {
       id: 'dataVacina',
       value: 'Horário',
     },
+    {
+      id: 'completed',
+      value: 'Atendimento',
+      render: () => (
+        <input
+          className="m-2"
+          type="checkbox"
+        />
+      ),
+    },
   ];
 
   return (
