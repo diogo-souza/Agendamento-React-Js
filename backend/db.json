@@ -16,5 +16,22 @@
   "profile": {
     "name": "typicode"
   },
-  "agenda": []
+  "agenda": [
+    {
+      "dataVacina": "2021-04-27T03:00:00.000Z",
+      "categoria": "",
+      "nome": "Diogo",
+      "atendimento": "Não Realizado",
+      "dataNascimento": "1998-03-31T03:00:00.000Z",
+      "id": 1
+    },
+    {
+      "dataVacina": "2021-05-08T03:00:00.000Z",
+      "categoria": "",
+      "nome": "Gabriel",
+      "atendimento": "Não Realizado",
+      "dataNascimento": "1996-02-25T03:00:00.000Z",
+      "id": 2
+    }
+  ]
 }
