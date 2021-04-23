@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import {
@@ -8,11 +9,19 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Formik, Form, Field,
 } from 'formik';
+import { ToastContainer } from 'react-toastify';
+import Select from 'react-select';
 import DatePicker from '../../Components/DatePicker';
 // importando as funções de valores iniciais, validação e submit dos valores
 import { initialValues, validationSchema, onSubmitFunc } from '../../Components/Formik/funcs';
 
 export default function index() {
+  const options = [
+    { categoria: 'idoso', label: 'Idoso' },
+    { categoria: 'adulto', label: 'Adulto' },
+    { categoria: 'criança', label: 'Criança' },
+  ];
+
   // Corpo da aplicação com formulário Formik
   return (
     <Container>
@@ -41,9 +50,9 @@ export default function index() {
               Categoria
 
             </label>
-            <Field
-              className="form-control"
-              type="select"
+            <Select
+              className="input"
+              options={options}
               id="categoria"
               name="categoria"
             />
@@ -92,6 +101,7 @@ export default function index() {
           </Form>
         </Formik>
       </Card>
+      <ToastContainer />
     </Container>
   );
 }

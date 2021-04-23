@@ -6,21 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
   Container, Button,
 } from 'react-bootstrap';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Listar from '../../Components/Lista';
 import axios from '../../utils/api';
 
 export default function Listaindex() {
-  // função para deletar paciente caso seja necessário
-  const pacienteAtendidoDeletar = async (paciente) => {
-    try {
-      await axios.delete(`/agenda/${paciente.id}`);
-      toast.info('Atendimento Feito!');
-    } catch (e) {
-      toast.error(e.message);
-    }
-  };
-  // dskdks
   // recuperando dados do paciente e mudando status de atendimento
   const pacienteEditarAtendimento = async (paciente) => {
     const response = await axios.get(`/agenda/${paciente.id}`);
@@ -34,8 +25,21 @@ export default function Listaindex() {
         dataNascimento: response.data.dataNascimento,
       });
       toast.success('Atendimento Finalizado!');
+      window.location.reload();
     } catch (e) {
-      toast.error(e.message);
+      toast.error('Não foi possível finalizar o atendimento, por favor tente novamente mais tarde');
+    }
+  };
+
+  // função para deletar paciente caso seja necessário
+  const pacienteAtendidoDeletar = async (paciente) => {
+    try {
+      await axios.delete(`/agenda/${paciente.id}`);
+      toast.sucess('Atendimento Removido!');
+      window.location.reload();
+    } catch (e) {
+      toast.error('Não foi possível remover o usuário, por favor tente novamente mais tarde');
+      window.location.reload();
     }
   };
 
@@ -86,6 +90,7 @@ export default function Listaindex() {
         columns={columns}
         endpoint="/agenda"
       />
+      <ToastContainer />
     </Container>
   );
 }
