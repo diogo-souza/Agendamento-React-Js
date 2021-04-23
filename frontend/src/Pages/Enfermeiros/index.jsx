@@ -1,6 +1,6 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-underscore-dangle */
-import React from 'react';
+import React/* , { useEffect } */ from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
@@ -12,6 +12,16 @@ import Listar from '../../Components/Lista';
 import axios from '../../utils/api';
 
 export default function Listaindex() {
+  /*   const [count, setCount] = useState(0);
+
+  const getDados = async () => {
+    await axios.get('/agenda');
+  }
+
+  useEffect(() => {
+    getDados();
+  }, [count]); */
+
   // recuperando dados do paciente e mudando status de atendimento
   const pacienteEditarAtendimento = async (paciente) => {
     const response = await axios.get(`/agenda/${paciente.id}`);
@@ -26,6 +36,7 @@ export default function Listaindex() {
       });
       toast.success('Atendimento Finalizado!');
       window.location.reload();
+      /* setCount(count + 1); */
     } catch (e) {
       toast.error('Não foi possível finalizar o atendimento, por favor tente novamente mais tarde');
     }
